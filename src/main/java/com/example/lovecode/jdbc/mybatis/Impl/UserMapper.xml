@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.lovecode.jdbc.mybatis.Interface.UserMapper">
+
+    <resultMap id="userEntity" type="com.example.lovecode.jdbc.mybatis.Entity.UserEntity">
+        <result property="userId" column="userId"/>
+        <result property="name" column="name"/>
+        <result property="nickName" column="nickName"/>
+        <result property="city" column="city"/>
+        <result property="country" column="country"/>
+        <result property="province" column="province"/>
+        <result property="mobile" column="mobile"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    <!-- 通用的查询SQL字段-->
+    <sql id="All_Column_List">
+        `userId`,
+        `name`,
+        `nickName`,
+        `city`,
+        `country`,
+        `province`,
+        `mobile`,
+        `status`
+    </sql>
+
+    <select id="getByUserId" resultMap="userEntity">
+        select * from userInfo where userId=#{id}
+    </select>
+
+</mapper>
