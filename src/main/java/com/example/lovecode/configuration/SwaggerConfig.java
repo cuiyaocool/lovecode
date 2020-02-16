@@ -30,7 +30,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "love code 接口文档",
+                "Love Code 接口文档",
                 "loveCode 欢迎关注",
                 "API V1.0",
                 "Terms of service",
