@@ -1,8 +1,7 @@
-package com.example.lovecode.jdbc.mybatis.Dao;
+package com.example.lovecode.jdbc.mybatis.dao;
 
 import com.example.lovecode.jdbc.mybatis.Entity.UserEntity;
 import com.example.lovecode.jdbc.mybatis.Interface.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;

@@ -1,7 +1,6 @@
-package com.example.lovecode.Configuration;
+package com.example.lovecode.configuration;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 @Configuration
 public class MyBatisConfiguration {

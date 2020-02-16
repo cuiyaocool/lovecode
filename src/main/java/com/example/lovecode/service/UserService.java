@@ -2,8 +2,9 @@ package com.example.lovecode.service;
 
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
-import com.example.lovecode.jdbc.mybatis.Dao.UserDao;
+import com.example.lovecode.jdbc.mybatis.dao.UserDao;
 import com.example.lovecode.jdbc.mybatis.Entity.UserEntity;
+import com.example.lovecode.jdbc.mybatis.dto.UserDTO;
 import com.example.lovecode.jdbc.mybatis.excel.UserExcel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,12 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserDao userDao;
-    public UserEntity getUserById(Integer id) {
-        return userDao.getUserById(id);
+    public UserDTO getUserById(Integer id) {
+        UserEntity userEntity = userDao.getUserById(id);
+        if (userEntity == null) {
+            return null;
+        }
+        return new UserDTO(userEntity);
     }
 
     public void addUsersByExcel(MultipartFile file) {
