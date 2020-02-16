@@ -1,6 +1,7 @@
 package com.example.lovecode.controller;
 
 import io.swagger.annotations.*;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,7 @@ public class LoginController {
             @ApiImplicitParam(value = "用户名", name = "name", required = true, dataType = "String", defaultValue = "null", paramType = "query"),
             @ApiImplicitParam(value = "密码", name = "pw", required = true, dataType = "String", defaultValue = "null", paramType = "query")}
     )
-    @RequestMapping("/bypw")
+    @PostMapping("/bypw")
     public Object loginByPw(@RequestParam String name, @RequestParam String pw) {
         return null;
     }
