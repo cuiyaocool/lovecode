@@ -4,8 +4,6 @@ import io.swagger.annotations.*;
 import lombok.Data;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
 @Api(tags = "登录操作接口", authorizations = {@Authorization("token")})
 @RestController
 @RequestMapping(value = "/api/login",produces = "application/json;charset=UTF-8")
