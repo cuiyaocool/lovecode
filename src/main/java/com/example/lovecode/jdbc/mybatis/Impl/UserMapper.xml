@@ -14,20 +14,30 @@
         <result property="province" column="province"/>
         <result property="mobile" column="mobile"/>
         <result property="status" column="status"/>
+        <result property="avatarUrl" column="avatarUrl"/>
+        <result property="gender" column="gender"/>
+        <result property="password" column="password"/>
+        <result property="birthday" column="birthday"/>
+        <result property="email" column="email"/>
     </resultMap>
     <!-- 通用的查询SQL字段-->
     <sql id="All_Column_List">
         `userId`,
         `name`,
         `nickName`,
-        `city`,
+        `avatarUrl`,
+        `mobile`,
+        `gender`,
         `country`,
         `province`,
-        `mobile`,
+        `city`,
+        `password`,
+        `birthday`,
+        `email`,
         `status`
     </sql>
 
-    <select id="getByUserId" resultMap="userEntity">
+    <select id="getUserById" parameterType="int" resultMap="userEntity">
         select * from userInfo where userId=#{id}
     </select>
 

@@ -140,6 +140,7 @@
         <resources>
             <resource>
                 <directory>src/main/java/com/example/lovecode/jdbc/mybatis/Impl</directory>
+                <targetPath>com/example/lovecode/jdbc/mybatis/Impl</targetPath>
                 <includes>
                     <include>*.xml</include>
                 </includes>
