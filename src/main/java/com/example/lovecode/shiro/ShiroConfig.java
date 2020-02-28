@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +25,8 @@ public class ShiroConfig {
 
 
     @Bean
-    public SecurityManager securityManager(LoveCodeRealme loveCodeRealme) {
+    public SecurityManager securityManager(LoveCodeRealme loveCodeRealme, DataSource dataSource) {
+        loveCodeRealme.setDataSource(dataSource);
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         defaultWebSecurityManager.setRealm(loveCodeRealme);
         return defaultWebSecurityManager;
@@ -33,12 +35,15 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean getShiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);
-        shiroFilter.setLoginUrl("/admin/login");
-        shiroFilter.setSuccessUrl("/admin/index");
+        shiroFilter.setLoginUrl("/api/login");
+        shiroFilter.setSuccessUrl("/api/index/status");
         shiroFilter.setUnauthorizedUrl("/previlige/no");
         Map<String, String> filterChainDefinitionMap = new HashMap<String, String>();
         filterChainDefinitionMap.put("/admin/login", "anon");
         filterChainDefinitionMap.put("/assets/**", "anon");
+        //filterChainDefinitionMap.put("/api/code/generate", "authc");
+        filterChainDefinitionMap.put("/api/message", "roles[admin]");
+        filterChainDefinitionMap.put("/api/code/generate", "roles[guest]");
         shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilter;
     }
