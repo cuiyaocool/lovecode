@@ -25,10 +25,9 @@ public class ShiroConfig {
 
 
     @Bean
-    public SecurityManager securityManager(LoveCodeRealme loveCodeRealme, DataSource dataSource) {
-        loveCodeRealme.setDataSource(dataSource);
+    public SecurityManager securityManager(LoveCodeRealme2 loveCodeRealme2) {
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
-        defaultWebSecurityManager.setRealm(loveCodeRealme);
+        defaultWebSecurityManager.setRealm(loveCodeRealme2);
         return defaultWebSecurityManager;
     }
     @Bean(name = "shiroFilter")
@@ -41,7 +40,6 @@ public class ShiroConfig {
         Map<String, String> filterChainDefinitionMap = new HashMap<String, String>();
         filterChainDefinitionMap.put("/admin/login", "anon");
         filterChainDefinitionMap.put("/assets/**", "anon");
-        //filterChainDefinitionMap.put("/api/code/generate", "authc");
         filterChainDefinitionMap.put("/api/message", "roles[admin]");
         filterChainDefinitionMap.put("/api/code/generate", "roles[guest]");
         shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);

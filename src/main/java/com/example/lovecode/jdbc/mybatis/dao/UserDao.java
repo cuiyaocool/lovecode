@@ -14,4 +14,8 @@ public class UserDao {
     public UserEntity getUserById(Integer id) {
         return userMapper.getUserById(id);
     }
+
+    public UserEntity getUserByMobile(String mobile) {
+        return userMapper.getUserByMobile(mobile);
+    }
 }

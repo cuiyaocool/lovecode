@@ -14,4 +14,6 @@ public interface UserMapper {
 
 //    @Select("select * from userInfo where userId=#{id}")
     UserEntity getUserById(@Param("id") Integer id);
+
+    UserEntity getUserByMobile(String mobile);
 }

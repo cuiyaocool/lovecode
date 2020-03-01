@@ -41,4 +41,8 @@
         select * from userInfo where userId=#{id}
     </select>
 
+    <select id="getUserByMobile" parameterType="String" resultMap="userEntity">
+        select * from userInfo where mobile=#{mobile}
+    </select>
+
 </mapper>

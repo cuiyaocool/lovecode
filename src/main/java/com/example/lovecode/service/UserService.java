@@ -2,8 +2,10 @@ package com.example.lovecode.service;
 
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
+import com.example.lovecode.jdbc.mybatis.dao.RolesPermissionsDao;
 import com.example.lovecode.jdbc.mybatis.dao.UserDao;
 import com.example.lovecode.jdbc.mybatis.Entity.UserEntity;
+import com.example.lovecode.jdbc.mybatis.dao.UserRoleDao;
 import com.example.lovecode.jdbc.mybatis.dto.UserDTO;
 import com.example.lovecode.jdbc.mybatis.excel.UserExcel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +13,43 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserService {
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private UserRoleDao userRoleDao;
+
+    @Autowired
+    private RolesPermissionsDao rolesPermissionsDao;
+
+    public List<String> getRoleListByMobile(String mobile) {
+        UserEntity userEntity = userDao.getUserByMobile(mobile);
+        return getRoleListById(userEntity.getUserId());
+    }
+
+    public String getPasswordByMoblie(String mobile) {
+        UserEntity userEntity = userDao.getUserByMobile(mobile);
+        return userEntity.getPassword();
+    }
+
+    public List<String> getRoleListById(int userId) {
+        System.out.println("userId is : " + userId);
+        return userRoleDao.getUserRoleListById(userId);
+    }
+
+    public List<String> getPermissionListByRole(List<String> roles) {
+        List<String> permissionList = new ArrayList<>();
+        for (String role : roles) {
+            List<String> tmp = rolesPermissionsDao.getPermissionsByRoleName(role);
+            permissionList.addAll(tmp);
+        }
+        return permissionList;
+    }
     public UserDTO getUserById(Integer id) {
         UserEntity userEntity = userDao.getUserById(id);
         if (userEntity == null) {
