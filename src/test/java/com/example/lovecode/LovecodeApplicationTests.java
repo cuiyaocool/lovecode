@@ -14,7 +14,7 @@ class LovecodeApplicationTests {
     void contextLoads() {
 
         RestTemplate restTemplate = new RestTemplateBuilder().build();
-        Object map = restTemplate.getForObject("https://baidu.com", Object.class);
+        Object map = restTemplate.getForObject("https://www.baidu.com", Object.class);
         System.out.println(map);
     }
 

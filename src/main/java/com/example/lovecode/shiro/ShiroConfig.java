@@ -41,7 +41,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/admin/login", "anon");
         filterChainDefinitionMap.put("/assets/**", "anon");
         filterChainDefinitionMap.put("/api/message", "roles[admin]");
-        filterChainDefinitionMap.put("/api/code/generate", "roles[guest]");
+        filterChainDefinitionMap.put("/api/code/generate", "anon");
         shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilter;
     }

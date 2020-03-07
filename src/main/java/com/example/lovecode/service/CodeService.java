@@ -4,6 +4,7 @@ import com.example.lovecode.common.Constants;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -17,8 +18,15 @@ import java.io.InputStream;
 
 @Service
 public class CodeService {
+
+    @Autowired
+    private RedisService redisService;
     public byte[] genarate(String message) {
         if (!StringUtils.isEmpty(message)) {
+            if (redisService.getValue(message) != null) {
+                System.out.println("缓存中获得" + redisService.getValue(message));
+                return (byte[])redisService.getValue(message);
+            }
             QRCodeWriter qrCodeWriter = new QRCodeWriter();
             try {
                 BitMatrix bitMatrix = qrCodeWriter.encode(message, BarcodeFormat.QR_CODE, Constants.QRCODE_WIDTH, Constants.QRCODE_HEIGHT);
@@ -38,6 +46,8 @@ public class CodeService {
                 }
 
                 // 2、将字节数组转为二进制
+                System.out.println("here$####");
+                redisService.setValue(message, bytes);
                 return bytes;
             } catch (Exception e) {
             }
