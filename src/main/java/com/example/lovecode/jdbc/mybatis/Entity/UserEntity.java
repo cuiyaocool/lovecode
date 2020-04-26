@@ -1,10 +1,13 @@
 package com.example.lovecode.jdbc.mybatis.Entity;
 
+import com.example.lovecode.annotation.TestAnnotation;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 public class UserEntity {
     private Integer userId;
     private String name;
@@ -20,4 +23,8 @@ public class UserEntity {
     private int status;
     private String email;
 
+    @TestAnnotation
+    public UserEntity(String name) {
+        this.name = name;
+    }
 }

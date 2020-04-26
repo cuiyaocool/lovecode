@@ -1,6 +1,8 @@
 package com.example.lovecode.service;
 
+import com.example.lovecode.annotation.TestAnnotation;
 import com.example.lovecode.common.Constants;
+import com.example.lovecode.jdbc.mybatis.Entity.UserEntity;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -21,7 +23,9 @@ public class CodeService {
 
     @Autowired
     private RedisService redisService;
+
     public byte[] genarate(String message) {
+        UserEntity userEntity = new UserEntity("name");
         if (!StringUtils.isEmpty(message)) {
             if (redisService.getValue(message) != null) {
                 System.out.println("缓存中获得" + redisService.getValue(message));
