@@ -6,7 +6,9 @@ import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -101,7 +103,23 @@ public class MapTest {
         map.compute("4", stringStringStringBiFunction);
         System.out.println(map);
 
-
+        // keySet得到的key的集合，该集合的实现无法删除和添加
+        Set<String> set = map.keySet();
+        System.out.println(String.format("set is %s", set));
+        Set<Map.Entry<String, String>> entries = map.entrySet();
+        Iterator<String> iterator = set.iterator();
+        Iterator<Map.Entry<String, String>> iterator1 = entries.iterator();
+        while (iterator.hasNext()) {
+            String a = iterator.next();
+            while (iterator1.hasNext()) {
+                Map.Entry<String, String> entry = iterator1.next();
+                if (entry.getKey().equals(a)) {
+                    System.out.println(a);
+                    System.out.println(String.format("key 相同 %s", a == entry.getKey()));
+                    break;
+                }
+            }
+        }
     }
 
 }
