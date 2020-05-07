@@ -120,6 +120,12 @@ public class MapTest {
                 }
             }
         }
+
+        System.out.println(map.size());
+        map.remove("1");
+        System.out.println(map.size());
+        System.out.println("keyset size : " + set.size());
+
     }
 
 }
