@@ -38,10 +38,9 @@ public class ShiroConfig {
         shiroFilter.setSuccessUrl("/api/index/status");
         shiroFilter.setUnauthorizedUrl("/previlige/no");
         Map<String, String> filterChainDefinitionMap = new HashMap<String, String>();
-        filterChainDefinitionMap.put("/admin/login", "anon");
-        filterChainDefinitionMap.put("/assets/**", "anon");
-        filterChainDefinitionMap.put("/api/message", "roles[admin]");
+        filterChainDefinitionMap.put("/api/msg/role", "roles[schwartz]");
         filterChainDefinitionMap.put("/api/code/generate", "anon");
+        filterChainDefinitionMap.put("/api/msg/anon", "anon");
         shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilter;
     }

@@ -15,5 +15,7 @@ public class ListTest {
         list.add("cc");
         list.add(0, "dd");
         System.out.println(list);
+        System.out.println(1);
+        System.out.println(2);
     }
 }
